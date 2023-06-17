@@ -7,12 +7,15 @@ const catchAsync = require('@utils/catchAsync')
 const globalErrorHandler = require('@controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('@utils/constants')
 const Company = require('./models/companyModel')
+const SalaryRouter = require('./routers/SalaryRouter')
 
 const app = express()
 app.use(express.json())
 
 // Loads .env file contents into process.env.
 dotenv.config({ path: './config.env' })
+
+app.use("/salary", SalaryRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl}`, 404))
