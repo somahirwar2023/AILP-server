@@ -7,6 +7,7 @@ const catchAsync = require('@utils/catchAsync')
 const globalErrorHandler = require('@controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('@utils/constants')
 const userRouter = require('./routers/user')
+const Company = require('./models/companyModel')
 
 const app = express()
 app.use(express.json())
