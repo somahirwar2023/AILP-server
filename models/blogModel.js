@@ -5,6 +5,9 @@ const blogSchema = new mongoose.Schema(
     title: String,
     subtitle: String,
     description: String,
+    votes: Number,
+    views: Number,
+    trendRating: Number,
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'User'

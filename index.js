@@ -18,13 +18,13 @@ const blogRouter = require('./routers/blogRouter')
 const app = express()
 app.use(express.json())
 
+// Loads .env file contents into process.env.
+dotenv.config({ path: './config.env' })
 
 app.use(userRouter)
 app.use(extractSkillsRouter)
 app.use(companyRouter)
 
-// Loads .env file contents into process.env.
-dotenv.config({ path: './config.env' })
 
 app.use("/salary", SalaryRouter);
 app.use("/interview-experience", interviewExperienceRouter);
@@ -67,3 +67,28 @@ process.on(UNHANDLED_REJECTION_EVENT, (err) => {
     process.exit(1)
   })
 })
+
+
+
+
+// app.post("/get-skills", async (req, res) => {
+//   try {
+//     const chatCompletion = await openai.createChatCompletion({
+//       model: "gpt-3.5-turbo",
+//       messages: [{role: "user", content: data}],
+//     });
+//     console.log("🚀 ~ file: index.js:84 ~ app.post ~ chatCompletion:", chatCompletion)
+
+//     return res.status(200).send({
+//       success: true,
+//       data: chatCompletion.data.choices[0].message,
+//     });
+//   } catch (error) {
+//     return res.status(400).send({
+//       success: false,
+//       error: error.response
+//         ? error.response.data
+//         : "There was an issue on the server",
+//     });
+//   }
+// });

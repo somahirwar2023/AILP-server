@@ -1,48 +1,43 @@
 const express = require('express')
-const axios = require('axios');
+const axios = require('axios')
 const dotenv = require('dotenv')
+const Auth = require('../middlewares/auth')
 
+const { Configuration, OpenAIApi } = require("openai");
 dotenv.config({ path: './config.env' })
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
 
 const router = new express.Router()
 
-router.post('/get-skills', async (req, res) => {
-    try{
-        // const options = {
-        //     method: 'POST',
-        //     url: 'https://emsiservices.com/skills/versions/latest/extract/trace',
-        //     qs: {language: 'fr'},
-        //     headers: {Authorization: `Bearer ${process.env.EMSI_TOKEN}`, 'Content-Type': 'application/json'},
-        //     body: {
-        //       text: req.body.text,
-        //     },
-        //     json: true
-        //   };
-        const options = {
-            method: 'POST',
-            url: 'https://auth.emsicloud.com/connect/token',
-            headers: {'content-type': 'application/x-www-form-urlencoded'},
-            form: {
-              client_id: 'gkzp3ralsv1frw5y',
-              client_secret: 'rf2OEQMK',
-              grant_type: 'client_credentials',
-              scope: 'emsi_open'
-            }
-          };
+router.post('/get-skills', Auth, async (req, res) => {
+    try {
+        const chatCompletion = await openai.createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: [{role: "user", content: req.body.text}],
+        });
 
-
-        axios.request(options)
-        .then((data) => {
-            res.send(data);
-        })
-        .catch(error)
-            res.send("Error");
-
-
-        // res.send(data)
-    }catch (error){
-        res.status(500).send("Skills extraction failed. \n Please try again!")
-    }
+        const jsonString = chatCompletion.data.choices[0].message.content;
+        console.log(jsonString);
+        const jsonArray = JSON.parse(jsonString);
+        console.log(jsonArray);
+        return res.status(200).send({
+          success: true,
+          data: jsonArray,
+        });
+      } catch (error) {
+        return res.status(400).send({
+          success: false,
+          error: error.response
+            ? error.response.data
+            : "There was an issue on the server",
+        });
+      }
 })
 
 module.exports = router
