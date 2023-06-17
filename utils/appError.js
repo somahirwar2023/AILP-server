@@ -1,4 +1,4 @@
-const { ERROR, FAIL } = require('@utils/constants')
+const { ERROR, FAIL } = require('./constants')
 
 class AppError extends Error {
   constructor(message, statusCode) {
