@@ -6,6 +6,7 @@ const { AppError } = require('@utils/appError')
 const catchAsync = require('@utils/catchAsync')
 const globalErrorHandler = require('@controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('@utils/constants')
+const Company = require('./models/companyModel')
 
 const app = express()
 app.use(express.json())
@@ -19,11 +20,8 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler)
 
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-)
-
+const DB = process.env.DATABASE
+console.log(DB)
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
