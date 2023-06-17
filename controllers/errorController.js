@@ -1,4 +1,4 @@
-const { AppError } = require('@utils/appError')
+const { AppError } = require('../utils/appError')
 const {
   CAST_ERROR,
   VALIDATION_ERROR,
@@ -6,7 +6,7 @@ const {
   ENV_DEVELOPMENT,
   ENV_PRODUCTION,
   ERROR,
-} = require('@utils/constants')
+} = require('../utils/constants')
 
 const handelCastErrorDb = (err) => {
   // handeling cast error
