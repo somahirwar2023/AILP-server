@@ -7,14 +7,17 @@ const catchAsync = require('@utils/catchAsync')
 const globalErrorHandler = require('@controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('@utils/constants')
 const userRouter = require('./routers/user')
-const Company = require('./models/companyModel')
 const SalaryRouter = require('./routers/SalaryRouter')
+const extractSkillsRouter = require('./routers/extractSkills')
+const companyRouter = require('./routers/companyRouter')
 
 const app = express()
 app.use(express.json())
 
 
 app.use(userRouter)
+app.use(extractSkillsRouter)
+app.use(companyRouter)
 
 // Loads .env file contents into process.env.
 dotenv.config({ path: './config.env' })
