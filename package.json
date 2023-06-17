@@ -1,7 +1,7 @@
 {
-  "name": "judgement-server",
+  "name": "ailp-server",
   "version": "1.0.0",
-  "description": "Judgement Server by Anikesh",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devies-sna/judgement-server.git"
+    "url": ""
   },
   "keywords": [
     "Judgement"
@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/devies-sna/judgement-server#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "module-alias": "^2.2.3",
     "mongoose": "^7.2.0",
     "validator": "^13.9.0"
