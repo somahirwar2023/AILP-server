@@ -1,0 +1,30 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "warn"
+  },
+  "module.exports" : {
+    "settings": {
+      "import/resolver": {
+        "eslint-import-resolver-module-alias": {
+          "alias": {
+            "@src": ".",
+            "@controllers": "controllers",
+            "@utils": "utils"
+          }
+        }
+      }
+    }
+  }
+}
