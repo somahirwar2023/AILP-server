@@ -1,4 +1,4 @@
-const Salary = require('../models/SalaryModel')
+const Salary = require('../models/salaryModel')
 const createFactory = require('./factories/createFactory')
 const getFactory = require('./factories/getFactory')
 

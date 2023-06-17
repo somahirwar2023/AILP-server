@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const SalarySchema = new mongoose.Schema(
+const salarySchema = new mongoose.Schema(
   {
     jobTitle: {
         type: String,
@@ -19,6 +19,7 @@ const SalarySchema = new mongoose.Schema(
         type: Number,
         require: [true, 'Fixed salary cannot be empty']
     },
+    location: String,
     components: [{
         type: {
             fieldName: {
@@ -35,6 +36,14 @@ const SalarySchema = new mongoose.Schema(
   }
 );
 
-const Salary = mongoose.model("Salary", SalarySchema);
+salarySchema.pre(/^find/, function (next) {
+    this.populate({
+      path: "company"   
+    });
+    next();
+  });
+  
+
+const Salary = mongoose.model("Salary", salarySchema);
 
 module.exports = Salary;

@@ -8,7 +8,10 @@ const globalErrorHandler = require('@controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('@utils/constants')
 const userRouter = require('./routers/user')
 const Company = require('./models/companyModel')
-const SalaryRouter = require('./routers/SalaryRouter')
+const SalaryRouter = require('./routers/salaryRouter')
+const interviewExperienceRouter = require('./routers/interviewExperienceRouter')
+const commentRouter = require('./routers/commentRouter')
+const blogRouter = require('./routers/blogRouter')
 
 const app = express()
 app.use(express.json())
@@ -20,6 +23,9 @@ app.use(userRouter)
 dotenv.config({ path: './config.env' })
 
 app.use("/salary", SalaryRouter);
+app.use("/interview-experience", interviewExperienceRouter);
+app.use("/comment", commentRouter);
+app.use("/blog", blogRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl}`, 404))
