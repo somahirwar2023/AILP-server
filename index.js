@@ -6,6 +6,8 @@ const AppError  = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
 const { UNHANDLED_REJECTION_EVENT } = require('./utils/constants')
 const userRouter = require('./routers/user')
+const extractSkillsRouter = require('./routers/extractSkills')
+const companyRouter = require('./routers/companyRouter')
 const Company = require('./models/companyModel')
 const SalaryRouter = require('./routers/salaryRouter')
 const interviewExperienceRouter = require('./routers/interviewExperienceRouter')
@@ -17,6 +19,8 @@ app.use(express.json())
 
 
 app.use(userRouter)
+app.use(extractSkillsRouter)
+app.use(companyRouter)
 
 // Loads .env file contents into process.env.
 dotenv.config({ path: './config.env' })

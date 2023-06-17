@@ -14,8 +14,11 @@ const companySchema = new mongoose.Schema(
         type: String,
         default: ""
     },
+    logo: {
+      type: String,
+      required: true,
+    },
     startYear: Date
-
   }
 );
 
