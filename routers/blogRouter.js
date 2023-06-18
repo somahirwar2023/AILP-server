@@ -6,6 +6,7 @@ const Blog = require('../models/blogModel')
 const router = express.Router()
 
 router.route('/').post(blogController.create).get(blogController.getAll)
+router.route('/tags').post(blogController.blogBasedOnTags)
 
 // router.get('/:id', Auth, async (req, res) => {
 //     const blogId = req.params.id;
