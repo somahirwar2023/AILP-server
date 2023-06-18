@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.route('/').post(salaryController.create).get(salaryController.getAll)
 
-router.get('/top-salary', Auth, async (req, res) => {
+router.get('/top-salary', async (req, res) => {
     try{
         const topSalaries = await Salary.find().sort({ "total": -1 }).limit(5)
         res.send(topSalaries)
