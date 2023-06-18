@@ -9,6 +9,9 @@ const blogSchema = new mongoose.Schema(
       type:[String],
       default: []
     },
+    votes: Number,
+    views: Number,
+    trendRating: Number,
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
