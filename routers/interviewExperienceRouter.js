@@ -5,4 +5,5 @@ const router = express.Router()
 
 router.route('/').post(interviewExperienceController.create).get(interviewExperienceController.getAll)
 
+
 module.exports = router

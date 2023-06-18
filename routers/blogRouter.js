@@ -20,7 +20,7 @@ router.route('/tags').post(blogController.blogBasedOnTags)
 //     }
 // })
 
-router.post('/upvote/:id', Auth, async (req, res) => {
+router.post('/upvote/:id', async (req, res) => {
     const blogId = req.params.id;
     try{
         const blog = await Blog.findById(blogId)
@@ -33,7 +33,7 @@ router.post('/upvote/:id', Auth, async (req, res) => {
     }
 })
 
-router.post('/downvote/:id', Auth, async (req, res) => {
+router.post('/downvote/:id', async (req, res) => {
     const blogId = req.params.id;
     try{
         const blog = await Blog.findById(blogId)
@@ -46,7 +46,7 @@ router.post('/downvote/:id', Auth, async (req, res) => {
     }
 })
 
-router.get('/trending-blogs', Auth, async (req, res) => {
+router.get('/trending-blogs', async (req, res) => {
     try{
         const sortedBlogs = await Blog.find().sort({ "trendRating": -1 }).limit(5)
         res.send(sortedBlogs)

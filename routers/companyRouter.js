@@ -7,7 +7,7 @@ dotenv.config({ path: './config.env' })
 
 const router = new express.Router()
 
-router.post('/company', Auth, async (req, res) => {
+router.post('/company', async (req, res) => {
     try {
         const company = new Company(req.body);
         await company.save()
@@ -17,7 +17,7 @@ router.post('/company', Auth, async (req, res) => {
     }
 })
 
-router.get('/company', Auth, async (req, res) => {
+router.get('/company', async (req, res) => {
     try {
         const companies = await Company.find({})
         res.status(200).send(companies)
