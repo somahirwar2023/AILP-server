@@ -19,7 +19,7 @@ router.post('/get-skills', Auth, async (req, res) => {
     try {
         const chatCompletion = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [{role: "user", content: req.body.text}],
+          messages: [{role: "user", content: (req.body.text + "\n Extract the skills from the above job description into an array and output just that array")}],
         });
 
         const jsonString = chatCompletion.data.choices[0].message.content;
