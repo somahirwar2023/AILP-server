@@ -15,7 +15,7 @@ const openai = new OpenAIApi(configuration);
 
 const router = new express.Router()
 
-router.post('/get-skills', Auth, async (req, res) => {
+router.post('/get-skills', async (req, res) => {
     try {
         const chatCompletion = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
