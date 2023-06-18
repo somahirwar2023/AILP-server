@@ -12,7 +12,6 @@ const interviewExperienceSchema = new mongoose.Schema(
       ref: 'Salary'
     },
     description: String
-    
   },
   {
     toJSON: {virtuals: true},

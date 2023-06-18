@@ -13,8 +13,11 @@ const SalaryRouter = require('./routers/salaryRouter')
 const interviewExperienceRouter = require('./routers/interviewExperienceRouter')
 const commentRouter = require('./routers/commentRouter')
 const blogRouter = require('./routers/blogRouter')
+var cors = require('cors')
+ 
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // Loads .env file contents into process.env.
