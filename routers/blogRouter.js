@@ -49,7 +49,10 @@ router.post('/downvote/:id', async (req, res) => {
 router.get('/trending-blogs', async (req, res) => {
     try{
         const sortedBlogs = await Blog.find().sort({ "trendRating": -1 }).limit(5)
-        res.send(sortedBlogs)
+        res.status(200).json({
+            status: "success",
+            data:sortedBlogs
+        })
     } catch(error){
         res.status(500).send(error);
     }
